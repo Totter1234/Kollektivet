@@ -1,0 +1,10 @@
+{
+  "description": "En digital kunstplatform, hvor nye kunstnere kan dele og sælge værker, og samlere, gallerier og købere kan opdage kunst gennem kuraterede samlinger.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
