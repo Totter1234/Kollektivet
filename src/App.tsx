@@ -442,19 +442,112 @@ function Home({ navigate, cartCount, openArtwork }: { navigate: (s: Screen) => v
 
 function Discover({ navigate, openArtwork }: { navigate: (s: Screen) => void; openArtwork: (id: string) => void }) {
   const [query, setQuery] = useState('')
-  const filters = ['Medium', 'Pris', 'Stil', 'Størrelse']
+  const [openFilter, setOpenFilter] = useState<string | null>(null)
+  const [medium, setMedium] = useState('Alle')
+  const [price, setPrice] = useState('Alle')
+  const [style, setStyle] = useState('Alle')
+  const [size, setSize] = useState('Alle')
+  const styleByArtwork: Record<string, string> = {
+    'mellem-linjerne': 'Abstrakt',
+    'blod-horisont': 'Minimalistisk',
+    'fold-i': 'Organisk',
+    'stille-form': 'Figurativ',
+    'nattens-kant': 'Minimalistisk',
+    efterklang: 'Eksperimentel',
+    mellemrum: 'Abstrakt',
+    'indre-landskab': 'Abstrakt',
+    'rod-passage': 'Ekspressiv',
+    'fragment-07': 'Eksperimentel',
+    'sort-strom': 'Ekspressiv',
+  }
+  const sizeByArtwork: Record<string, string> = {
+    'mellem-linjerne': 'Stor',
+    'blod-horisont': 'Mellem',
+    'fold-i': 'Lille',
+    'stille-form': 'Lille',
+    'nattens-kant': 'Mellem',
+    efterklang: 'Mellem',
+    mellemrum: 'Stor',
+    'indre-landskab': 'Stor',
+    'rod-passage': 'Mellem',
+    'fragment-07': 'Mellem',
+    'sort-strom': 'Stor',
+  }
+  const filterGroups: Record<string, string[]> = {
+    Medium: ['Alle', 'Maleri', 'Fotografi', 'Skulptur', 'Digital kunst'],
+    Pris: ['Alle', 'Under 6.000 kr.', '6.000–10.000 kr.', 'Over 10.000 kr.', 'Kun fremvisning'],
+    Stil: ['Alle', 'Abstrakt', 'Minimalistisk', 'Organisk', 'Figurativ', 'Ekspressiv', 'Eksperimentel'],
+    Størrelse: ['Alle', 'Lille', 'Mellem', 'Stor'],
+  }
+  const selectedFilters: Record<string, string> = { Medium: medium, Pris: price, Stil: style, Størrelse: size }
+  const setFilter = (group: string, value: string) => {
+    if (group === 'Medium') setMedium(value)
+    if (group === 'Pris') setPrice(value)
+    if (group === 'Stil') setStyle(value)
+    if (group === 'Størrelse') setSize(value)
+    setOpenFilter(null)
+  }
+  const resetFilters = () => {
+    setMedium('Alle')
+    setPrice('Alle')
+    setStyle('Alle')
+    setSize('Alle')
+    setQuery('')
+  }
+  const filteredArtworks = artworks.filter((work) => {
+    const searchMatch = !query || `${work.title} ${work.artist} ${work.kind} ${styleByArtwork[work.id]}`.toLowerCase().includes(query.toLowerCase())
+    const mediumMatch = medium === 'Alle' || work.kind === medium
+    const styleMatch = style === 'Alle' || styleByArtwork[work.id] === style
+    const sizeMatch = size === 'Alle' || sizeByArtwork[work.id] === size
+    const priceMatch =
+      price === 'Alle' ||
+      (price === 'Kun fremvisning' && !work.price) ||
+      (price === 'Under 6.000 kr.' && Boolean(work.price && work.price < 6000)) ||
+      (price === '6.000–10.000 kr.' && Boolean(work.price && work.price >= 6000 && work.price <= 10000)) ||
+      (price === 'Over 10.000 kr.' && Boolean(work.price && work.price > 10000))
+    return searchMatch && mediumMatch && styleMatch && sizeMatch && priceMatch
+  })
+  const hasFilters = medium !== 'Alle' || price !== 'Alle' || style !== 'Alle' || size !== 'Alle' || Boolean(query)
   return (
     <main className="screen with-nav">
       <TopBar title="Opdag" />
-      <section className="px-5">
+      <section className="px-5 pt-6">
         <label className="search-box">
           <Icon name="search" size={19} />
           <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Søg kunstnere, værker, samlere" />
           {query && <button onClick={() => setQuery('')}><Icon name="close" size={17} /></button>}
         </label>
         <div className="hide-scrollbar -mx-5 mt-3 flex gap-2 overflow-x-auto px-5">
-          {filters.map((f) => <button className="filter-pill" key={f}>{f} <span>⌄</span></button>)}
+          {Object.keys(filterGroups).map((filter) => (
+            <button
+              className={`filter-pill ${selectedFilters[filter] !== 'Alle' ? 'selected' : ''}`}
+              key={filter}
+              onClick={() => setOpenFilter(openFilter === filter ? null : filter)}
+            >
+              {selectedFilters[filter] === 'Alle' ? filter : selectedFilters[filter]} <span>{openFilter === filter ? '⌃' : '⌄'}</span>
+            </button>
+          ))}
         </div>
+        {openFilter && (
+          <div className="filter-panel">
+            <div className="filter-panel-head">
+              <strong>{openFilter}</strong>
+              <button onClick={() => setOpenFilter(null)} aria-label="Luk filter"><Icon name="close" size={16} /></button>
+            </div>
+            <div className="filter-options">
+              {filterGroups[openFilter].map((option) => (
+                <button
+                  key={option}
+                  className={selectedFilters[openFilter] === option ? 'active' : ''}
+                  onClick={() => setFilter(openFilter, option)}
+                >
+                  {option}
+                  {selectedFilters[openFilter] === option && <Icon name="check" size={15} />}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </section>
       <section className="mt-8">
         <div className="flex items-end justify-between px-5">
@@ -476,9 +569,13 @@ function Discover({ navigate, openArtwork }: { navigate: (s: Screen) => void; op
         </div>
       </section>
       <section className="px-5 pb-8 pt-9">
-        <div className="flex items-end justify-between"><h2 className="serif text-[27px]">Udvalgte værker</h2><span className="text-xs text-ink/45">126 værker</span></div>
-        <div className="art-grid mt-4">
-          {artworks.filter((work) => !query || `${work.title} ${work.artist} ${work.kind}`.toLowerCase().includes(query.toLowerCase())).map((work, i) => (
+        <div className="flex items-end justify-between">
+          <h2 className="serif text-[27px]">{hasFilters ? 'Dine resultater' : 'Udvalgte værker'}</h2>
+          <span className="text-xs text-ink/45">{filteredArtworks.length} {filteredArtworks.length === 1 ? 'værk' : 'værker'}</span>
+        </div>
+        {hasFilters && <button className="mt-2 text-[10px] underline underline-offset-4" onClick={resetFilters}>Nulstil alle filtre</button>}
+        {filteredArtworks.length > 0 ? <div className="art-grid mt-4">
+          {filteredArtworks.map((work, i) => (
             <button key={work.id} onClick={() => openArtwork(work.id)} className={i % 3 === 0 ? 'tall' : ''}>
               <span className="art-grid-image">
                 <img src={work.image} alt={work.title} />
@@ -489,7 +586,14 @@ function Discover({ navigate, openArtwork }: { navigate: (s: Screen) => void; op
               <em>{work.price ? `${work.price.toLocaleString('da-DK')} kr.` : 'Ikke til salg'}</em>
             </button>
           ))}
-        </div>
+        </div> : (
+          <div className="filter-empty">
+            <Icon name="search" size={25} />
+            <h3 className="serif mt-4 text-[24px]">Ingen værker matcher</h3>
+            <p>Prøv at ændre eller nulstille dine filtre.</p>
+            <button className="btn-outline mt-5" onClick={resetFilters}>Nulstil filtre</button>
+          </div>
+        )}
       </section>
       <Nav active="discover" navigate={navigate} />
     </main>

@@ -184,6 +184,18 @@
 .search-box input { width: 100%; background: transparent; font-size: 12px; }
 .filter-pill { flex: 0 0 auto; height: 33px; padding: 0 13px; border: 1px solid var(--line); border-radius: 20px; background: #fbfaf7; font-size: 10px; }
 .filter-pill span { margin-left: 7px; }
+.filter-pill.selected { border-color: var(--ink); background: var(--ink); color: white; }
+.filter-panel { margin-top: 12px; padding: 15px; border: 1px solid var(--line); background: #fbfaf7; animation: filter-in .18s ease-out; }
+.filter-panel-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+.filter-panel-head strong { font-family: 'Instrument Serif'; font-size: 19px; font-weight: 400; }
+.filter-panel-head button { display: grid; width: 28px; height: 28px; place-items: center; }
+.filter-options { display: flex; flex-wrap: wrap; gap: 7px; padding-top: 12px; }
+.filter-options button { display: flex; min-height: 32px; align-items: center; gap: 5px; padding: 0 11px; border: 1px solid var(--line); border-radius: 18px; font-size: 9px; }
+.filter-options button.active { border-color: var(--accent); background: #f7e7e2; color: #9e2f1c; }
+.filter-empty { display: flex; min-height: 310px; flex-direction: column; align-items: center; justify-content: center; color: rgb(23 23 19 / .45); text-align: center; }
+.filter-empty p { margin-top: 5px; font-size: 11px; }
+.filter-empty .btn-outline { width: 170px; color: var(--ink); }
+@keyframes filter-in { from { transform: translateY(-5px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 .collector-card { flex: 0 0 126px; text-align: left; }
 .collector-card img { width: 126px; height: 152px; object-fit: cover; }
 .collector-card strong { display: block; margin-top: 7px; font-size: 11px; font-weight: 500; }
