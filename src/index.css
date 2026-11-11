@@ -179,6 +179,15 @@
 .following-collection small { font-size: 8px; font-weight: 600; letter-spacing: .14em; }
 .following-collection strong { display: block; margin-top: 4px; font-family: 'Instrument Serif'; font-size: 25px; font-weight: 400; }
 .following-collection p { margin-top: 2px; font-size: 10px; color: rgb(255 255 255 / .72); }
+.magazine-promo { position: relative; display: block; width: calc(100% - 40px); height: 330px; overflow: hidden; color: white; text-align: left; }
+.magazine-promo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgb(10 15 11 / .8), rgb(10 15 11 / .28)); }
+.magazine-promo > img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.7); }
+.magazine-promo > span { position: absolute; z-index: 1; inset: 18px; display: flex; flex-direction: column; align-items: start; }
+.magazine-promo .brand-logo { width: 120px; height: 48px; margin: -10px 0 0 -2px; }
+.magazine-promo small { margin-top: auto; font-size: 8px; font-weight: 600; letter-spacing: .14em; }
+.magazine-promo strong { margin-top: 5px; font-family: 'Instrument Serif'; font-size: 35px; font-weight: 400; line-height: 1; }
+.magazine-promo p { margin-top: 7px; max-width: 245px; font-size: 10px; line-height: 1.5; color: rgb(255 255 255 / .75); }
+.magazine-promo u { display: flex; align-items: center; gap: 7px; margin-top: 14px; font-size: 10px; text-underline-offset: 4px; }
 
 .search-box { display: flex; height: 45px; align-items: center; gap: 10px; padding: 0 13px; border: 1px solid #bdb9b2; background: white; }
 .search-box input { width: 100%; background: transparent; font-size: 12px; }
@@ -277,6 +286,24 @@
 .toggle.on { background: var(--accent); }
 .toggle.on i { transform: translateX(19px); }
 .success-mark { display: grid; width: 68px; height: 68px; place-items: center; border: 1px solid var(--accent); border-radius: 50%; color: var(--accent); }
+
+.about-hero { position: relative; height: 390px; color: white; }
+.about-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgb(0 0 0 / .08), rgb(0 0 0 / .7)); }
+.about-hero > img { width: 100%; height: 100%; object-fit: cover; }
+.about-hero > div { position: absolute; z-index: 1; right: 22px; bottom: 24px; left: 22px; }
+.about-hero h1 { margin-top: 8px; font-family: 'Instrument Serif'; font-size: 43px; line-height: .92; }
+.about-lead { font-family: 'Instrument Serif'; font-size: 24px; line-height: 1.2; }
+.about-rule { display: grid; grid-template-columns: 28px 1fr; gap: 12px; padding: 22px 0; border-top: 1px solid var(--line); }
+.about-rule > span { padding-top: 4px; font-size: 9px; color: var(--accent); }
+.about-rule h2 { font-family: 'Instrument Serif'; font-size: 22px; }
+.about-rule p { margin-top: 6px; font-size: 11px; line-height: 1.7; color: rgb(23 23 19 / .58); }
+.about-quote { padding: 25px 22px; background: var(--ink); color: white; }
+.about-quote p { font-family: 'Instrument Serif'; font-size: 25px; line-height: 1.12; }
+.about-quote small { display: block; margin-top: 16px; font-size: 8px; letter-spacing: .14em; color: rgb(255 255 255 / .55); }
+.contact-details { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); }
+.contact-details > div { display: block; }
+.contact-details span { display: block; font-size: 7px; font-weight: 600; letter-spacing: .14em; color: rgb(23 23 19 / .4); }
+.contact-details strong { display: block; margin-top: 5px; font-size: 10px; font-weight: 500; }
 
 .mag-cover { position: relative; height: 410px; overflow: hidden; background: #b9c3b7; }
 .mag-cover img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.72) contrast(.9); }

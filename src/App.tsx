@@ -5,6 +5,7 @@ type Screen =
   | 'discover'
   | 'upload'
   | 'magazine'
+  | 'about'
   | 'profile'
   | 'artwork'
   | 'artist'
@@ -29,6 +30,7 @@ type IconName =
   | 'camera'
   | 'bag'
   | 'close'
+  | 'info'
 
 type ArtworkItem = {
   id: string
@@ -62,6 +64,22 @@ const images = {
     'https://images.unsplash.com/photo-1549289524-06cf8837ace5?auto=format&fit=crop&w=900&q=85',
   digital:
     'https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?auto=format&fit=crop&w=900&q=85',
+  crimson:
+    'https://images.unsplash.com/photo-1551913902-c92207136625?auto=format&fit=crop&w=900&q=85',
+  veil:
+    'https://images.unsplash.com/photo-1533158326339-7f3cf2404354?auto=format&fit=crop&w=900&q=85',
+  violet:
+    'https://images.unsplash.com/photo-1573221566340-81bdde00e00b?auto=format&fit=crop&w=900&q=85',
+  archive:
+    'https://images.unsplash.com/photo-1578301978018-3005759f48f7?auto=format&fit=crop&w=900&q=85',
+  form:
+    'https://images.unsplash.com/photo-1564399579883-451a5d44ec08?auto=format&fit=crop&w=900&q=85',
+  current:
+    'https://images.unsplash.com/photo-1579783928621-7a13d66a62d1?auto=format&fit=crop&w=900&q=85',
+  gesture:
+    'https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=900&q=85',
+  trace:
+    'https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?auto=format&fit=crop&w=900&q=85',
   sculpture: '/art/stille-form.jpg',
   portrait:
     'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=85',
@@ -205,6 +223,100 @@ const artworks: ArtworkItem[] = [
     kind: 'Maleri',
     description: 'Store strøg af tusche bevæger sig på tværs af den rå bomuld. Et værk om tempo, tyngde og den gestus, der ikke kan gentages.',
   },
+  {
+    id: 'rodt-ekko',
+    title: 'Rødt ekko',
+    artist: 'Karla Munk',
+    year: '2025',
+    image: images.crimson,
+    medium: 'Olie på hør',
+    size: '120 × 100 cm',
+    price: 13400,
+    kind: 'Maleri',
+    description: 'Dybe røde toner gentager sig på tværs af lærredet som et ekko. Under overfladen står tidligere lag tilbage som spor af en langsom proces.',
+  },
+  {
+    id: 'slor',
+    title: 'Slør',
+    artist: 'Nora Falk',
+    year: '2024',
+    image: images.veil,
+    medium: 'Pigment og akryl',
+    size: '80 × 60 cm',
+    price: 7200,
+    kind: 'Maleri',
+    description: 'Et maleri om at se gennem noget. Tynde pigmentlag lægger sig som slør over hinanden og holder motivet lige uden for rækkevidde.',
+  },
+  {
+    id: 'violet-frekvens',
+    title: 'Violet frekvens',
+    artist: 'Mikkel Sun',
+    year: '2025',
+    image: images.violet,
+    medium: 'UV-print på aluminium',
+    size: '90 × 70 cm',
+    kind: 'Digital kunst',
+    description: 'Farve og digital støj samles i et vibrerende felt. Værket er en del af kunstnerens serie om signaler, skærme og sansning.',
+  },
+  {
+    id: 'arkiv-no-3',
+    title: 'Arkiv No. 3',
+    artist: 'Ida Voss',
+    year: '2023',
+    image: images.archive,
+    medium: 'Analogt fotografi',
+    size: '50 × 70 cm',
+    price: 3900,
+    kind: 'Fotografi',
+    description: 'Et fotografisk fragment fra et sted uden navn. Korn, lys og arkitektur bliver til et åbent arkiv for beskuerens egne erindringer.',
+  },
+  {
+    id: 'modvaegt',
+    title: 'Modvægt',
+    artist: 'Otto Kjær',
+    year: '2024',
+    image: images.form,
+    medium: 'Støbt gips og stål',
+    size: '48 × 36 × 30 cm',
+    price: 8600,
+    kind: 'Skulptur',
+    description: 'To materialer holdes i en tilsyneladende umulig balance. Skulpturen undersøger tyngde som både fysisk kraft og mental tilstand.',
+  },
+  {
+    id: 'stromfelt',
+    title: 'Strømfelt',
+    artist: 'Rosa Bille',
+    year: '2025',
+    image: images.current,
+    medium: 'Olie og spraymaling',
+    size: '150 × 110 cm',
+    price: 17800,
+    kind: 'Maleri',
+    description: 'Et stort energifelt af farve, bevægelse og afbrydelser. Penselstrøg og sprayede spor kolliderer uden at miste deres retning.',
+  },
+  {
+    id: 'gestus-ii',
+    title: 'Gestus II',
+    artist: 'Emil Rømer',
+    year: '2024',
+    image: images.gesture,
+    medium: 'Akryl på lærred',
+    size: '100 × 100 cm',
+    price: 9800,
+    kind: 'Maleri',
+    description: 'En spontan bevægelse fastholdt i farve. Værket kredser om det øjeblik, hvor kontrol giver plads til intuition.',
+  },
+  {
+    id: 'spor-i-lys',
+    title: 'Spor i lys',
+    artist: 'Sara Lind',
+    year: '2025',
+    image: images.trace,
+    medium: 'Pigmentprint på bomuld',
+    size: '60 × 45 cm',
+    kind: 'Fotografi',
+    description: 'Lys falder gennem et rum og efterlader et midlertidigt billede. Fotografiet vises som et studie og er ikke frigivet til salg.',
+  },
 ]
 
 function BrandLogo({ light = false, className = '' }: { light?: boolean; className?: string }) {
@@ -234,6 +346,7 @@ function Icon({ name, size = 22, filled = false }: { name: IconName; size?: numb
     camera: <><path d="M4 7h3l1.5-2h7L17 7h3v12H4Z" /><circle cx="12" cy="13" r="3.5" /></>,
     bag: <><path d="M5 8h14l-1 13H6L5 8Zm4 1V6a3 3 0 0 1 6 0v3" /></>,
     close: <><path d="M6 6l12 12M18 6 6 18" /></>,
+    info: <><circle cx="12" cy="12" r="9" /><path d="M12 10.5V17M12 7.2v.2" /></>,
   }
   return (
     <svg
@@ -303,7 +416,7 @@ function Nav({
     { screen: 'home', label: 'Hjem', icon: 'home' },
     { screen: 'discover', label: 'Opdag', icon: 'search' },
     { screen: 'upload', label: 'Upload', icon: 'plus' },
-    { screen: 'magazine', label: 'Magasin', icon: 'magazine' },
+    { screen: 'about', label: 'Om os', icon: 'info' },
     { screen: 'profile', label: 'Profil', icon: 'user' },
   ]
   return (
@@ -434,6 +547,32 @@ function Home({ navigate, cartCount, openArtwork }: { navigate: (s: Screen) => v
             <img src={images.photo} alt="Nattens kant" />
             <span><small>8 VÆRKER</small><strong>Stilhed efter mørke</strong><p>Fotografi, pigment og nattens landskaber.</p></span>
           </button>
+          <div className="mt-10 px-5">
+            <p className="eyebrow">FLERE NYE VÆRKER</p>
+            <div className="following-grid mt-4">
+              {[
+                ['rod-passage', images.orange, 'Rød passage', 'Jonas Dyring', '5.800 kr.'],
+                ['sort-strom', images.ink, 'Sort strøm', 'Viggo Ahn', '11.200 kr.'],
+              ].map(([id, src, title, artist, status]) => (
+                <button key={id} onClick={() => openArtwork(id)}>
+                  <img src={src} alt={title} />
+                  <strong>{title}</strong>
+                  <small>{artist}</small>
+                  <em>{status}</em>
+                </button>
+              ))}
+            </div>
+          </div>
+          <button className="magazine-promo mx-5 mt-11" onClick={() => navigate('magazine')}>
+            <img src={images.magazine} alt="KOLLEKTIVET Magasin" />
+            <span>
+              <BrandLogo light />
+              <small>KVARTALSMAGASIN · NR. 02</small>
+              <strong>Nye horisonter</strong>
+              <p>Læs om kunstnerne, der former en ny virkelighed.</p>
+              <u>Åbn magasinet <Icon name="arrow" size={15} /></u>
+            </span>
+          </button>
       </section>
       <Nav active="home" navigate={navigate} />
     </main>
@@ -459,6 +598,14 @@ function Discover({ navigate, openArtwork }: { navigate: (s: Screen) => void; op
     'rod-passage': 'Ekspressiv',
     'fragment-07': 'Eksperimentel',
     'sort-strom': 'Ekspressiv',
+    'rodt-ekko': 'Abstrakt',
+    slor: 'Minimalistisk',
+    'violet-frekvens': 'Eksperimentel',
+    'arkiv-no-3': 'Minimalistisk',
+    modvaegt: 'Organisk',
+    stromfelt: 'Ekspressiv',
+    'gestus-ii': 'Ekspressiv',
+    'spor-i-lys': 'Minimalistisk',
   }
   const sizeByArtwork: Record<string, string> = {
     'mellem-linjerne': 'Stor',
@@ -472,6 +619,14 @@ function Discover({ navigate, openArtwork }: { navigate: (s: Screen) => void; op
     'rod-passage': 'Mellem',
     'fragment-07': 'Mellem',
     'sort-strom': 'Stor',
+    'rodt-ekko': 'Stor',
+    slor: 'Mellem',
+    'violet-frekvens': 'Mellem',
+    'arkiv-no-3': 'Lille',
+    modvaegt: 'Lille',
+    stromfelt: 'Stor',
+    'gestus-ii': 'Stor',
+    'spor-i-lys': 'Lille',
   }
   const filterGroups: Record<string, string[]> = {
     Medium: ['Alle', 'Maleri', 'Fotografi', 'Skulptur', 'Digital kunst'],
@@ -935,10 +1090,85 @@ function Upload({ navigate }: { navigate: (s: Screen) => void }) {
   )
 }
 
+function About({ navigate }: { navigate: (s: Screen) => void }) {
+  const [contactOpen, setContactOpen] = useState(false)
+  const [contactSent, setContactSent] = useState(false)
+  return (
+    <main className="screen with-nav">
+      <TopBar title="Om os" />
+      <section className="pb-10">
+        <div className="about-hero">
+          <img src={images.gallery} alt="Samtidskunst i et galleri" />
+          <div><p className="eyebrow">KUNSTEN TILHØRER FLERE</p><h1>Et kollektiv<br />af nye blikke.</h1></div>
+        </div>
+        <div className="px-5 pt-8">
+          <p className="about-lead">KOLLEKTIVET er en digital kunstplatform, der bringer nye kunstnere, nysgerrige samlere og etablerede institutioner tættere på hinanden.</p>
+          <div className="about-rule mt-8">
+            <span>01</span>
+            <div><h2>Vi løfter nye stemmer</h2><p>Talent skal kunne opdages uden de rigtige forbindelser. Derfor giver vi unge kunstnere plads til at vise og sælge deres værker på egne præmisser.</p></div>
+          </div>
+          <div className="about-rule">
+            <span>02</span>
+            <div><h2>Samlere er kuratorer</h2><p>Når samlere deler deres blik og personlige samlinger, møder kunsten nye publikum. Smag bliver en bevægelse, ikke en lukket dør.</p></div>
+          </div>
+          <div className="about-rule">
+            <span>03</span>
+            <div><h2>Tryg kunsthandel</h2><p>Vi gør det enkelt og sikkert at købe original kunst med gennemsigtige priser, forsikret transport og direkte kontakt.</p></div>
+          </div>
+          <div className="about-quote mt-10">
+            <p>“Kunst vokser, når den bliver set, delt og sat i nye sammenhænge.”</p>
+            <small>— KOLLEKTIVET</small>
+          </div>
+          <h2 className="display mt-10 text-[34px]">Bliv en del af<br />kollektivet</h2>
+          <p className="mt-3 text-sm leading-6 text-ink/55">Følg nye perspektiver, del din samling eller vis verden, hvad du skaber.</p>
+          <button className="btn-dark mt-6" onClick={() => navigate('discover')}>Opdag kunsten <Icon name="arrow" size={18} /></button>
+          <button className="btn-outline mt-2" onClick={() => { setContactOpen(true); setContactSent(false) }}>Kontakt os</button>
+        </div>
+      </section>
+      {contactOpen && (
+        <div className="offer-overlay" role="presentation" onClick={() => setContactOpen(false)}>
+          <section className="offer-sheet contact-sheet" role="dialog" aria-modal="true" aria-labelledby="contact-title" onClick={(event) => event.stopPropagation()}>
+            <div className="offer-handle" />
+            <button className="offer-close" onClick={() => setContactOpen(false)} aria-label="Luk">
+              <Icon name="close" size={20} />
+            </button>
+            {contactSent ? (
+              <div className="offer-success">
+                <span className="success-mark"><Icon name="check" size={28} /></span>
+                <p className="eyebrow mt-6">BESKEDEN ER SENDT</p>
+                <h2 id="contact-title" className="display mt-2 text-[34px]">Tak, vi vender tilbage</h2>
+                <p className="mt-3 text-sm leading-6 text-ink/55">Vi svarer normalt inden for to hverdage.</p>
+                <button className="btn-dark mt-7" onClick={() => setContactOpen(false)}>Luk</button>
+              </div>
+            ) : (
+              <>
+                <p className="eyebrow text-accent">KONTAKT KOLLEKTIVET</p>
+                <h2 id="contact-title" className="display mt-2 text-[34px]">Hvad kan vi hjælpe med?</h2>
+                <p className="mt-3 text-sm leading-6 text-ink/55">Skriv til os om kunst, køb, samarbejder eller noget helt fjerde.</p>
+                <div className="form-stack mt-6">
+                  <label><span>Navn</span><input placeholder="Dit navn" /></label>
+                  <label><span>E-mail</span><input type="email" placeholder="navn@email.dk" /></label>
+                  <label><span>Besked</span><textarea rows={4} placeholder="Skriv din besked her" /></label>
+                </div>
+                <button className="btn-accent mt-6" onClick={() => setContactSent(true)}>Send besked</button>
+                <div className="contact-details">
+                  <div><span>TELEFON</span><strong>+45 12 34 56 78</strong></div>
+                  <div><span>E-MAIL</span><strong>kontakt@kollektivet.dk</strong></div>
+                </div>
+              </>
+            )}
+          </section>
+        </div>
+      )}
+      <Nav active="about" navigate={navigate} />
+    </main>
+  )
+}
+
 function Magazine({ navigate }: { navigate: (s: Screen) => void }) {
   return (
     <main className="screen with-nav">
-      <TopBar title="Magasin" />
+      <TopBar title="Magasin" onBack={() => navigate('home')} />
       <section className="px-5 pb-10">
         <p className="eyebrow mt-4">KVARTALSMAGASIN · NR. 02</p>
         <div className="mag-cover mt-3">
@@ -959,7 +1189,7 @@ function Magazine({ navigate }: { navigate: (s: Screen) => void }) {
           </button>
         ))}
       </section>
-      <Nav active="magazine" navigate={navigate} />
+      <Nav active="home" navigate={navigate} />
     </main>
   )
 }
@@ -1085,6 +1315,7 @@ export default function App() {
     discover: <Discover navigate={navigate} openArtwork={openArtwork} />,
     upload: <Upload navigate={navigate} />,
     magazine: <Magazine navigate={navigate} />,
+    about: <About navigate={navigate} />,
     profile: <Profile navigate={navigate} openArtwork={openArtwork} />,
     artwork: <Artwork navigate={navigate} artwork={selectedArtwork} inCart={cartArtworkIds.includes(selectedArtwork.id)} addToCart={(id) => setCartArtworkIds((current) => current.includes(id) ? current : [...current, id])} />,
     artist: <Artist navigate={navigate} openArtwork={openArtwork} />,
